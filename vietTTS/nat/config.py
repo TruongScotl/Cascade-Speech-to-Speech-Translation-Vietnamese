@@ -55,7 +55,7 @@ class FLAGS(Namespace):
     token_mask_prob = 0.1
 
     # ckpt
-    ckpt_dir = Path("assets/infore/nat")
+    ckpt_dir = Path("/Users/macos/Documents/GitHub/vietTTS/assets/infore/nat")
     data_dir = Path("train_data")
 
 
