@@ -100,7 +100,7 @@ def multisyn(base_path, output):
         syntheaudio([i], output + '/' + str(order) + '.wav', sample_rate, silence_duration, lexicon_file)
 
 path = '/content/Data/Bin_1'
-output = '/Users/macos/Desktop/Final_Report/Data/test_slice_data/source/test_syn'
+output = '/content/target'
 multisyn(path, output)
 
 
