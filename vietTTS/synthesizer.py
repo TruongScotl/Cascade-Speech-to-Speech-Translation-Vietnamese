@@ -83,7 +83,7 @@ def syntheaudio(path, output, sample_rate, silence_duration, lexicon_file):
 # output = '/Users/macos/Documents/GitHub/vietTTS/assets/infore/clip1.wav'
 sample_rate = 16000
 silence_duration = 0.2
-lexicon_file = '/Users/macos/Documents/GitHub/vietTTS/assets/infore/lexicon.txt'
+lexicon_file = '/content/vietTTS/assets/infore/lexicon.txt'
 
 def multisyn(base_path, output):
     order = 0
