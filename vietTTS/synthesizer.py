@@ -93,12 +93,12 @@ silence_duration = 0.2
 lexicon_file = '/content/vietTTS/assets/infore/lexicon.txt'
 
 def multisyn(base_path, output):
-    order = 0
     list_path =  sorted([f for f in glob.glob(base_path+"/*.wav")])
     for i in list_path:
-        order +=1
-        syntheaudio([i], output + '/' + str(order) + '.wav', sample_rate, silence_duration, lexicon_file)
-
+        file_name = os.path.basename(i)
+        file = os.path.splitext(file_name)
+        syntheaudio([i], output + '/' + file[0] + '.wav', sample_rate, silence_duration, lexicon_file)
+        
 path = '/content/Data/Bin_1'
 output = '/content/target'
 multisyn(path, output)
