@@ -74,10 +74,17 @@ def syntheaudio(path, output, sample_rate, silence_duration, lexicon_file):
     en_vi = translate_en2vi(en)
     text = nat_normalize_text(en_vi)
     print("Normalized text input:", text)
-    mel = text2mel(text, lexicon_file, silence_duration)
-    wave = mel2wave(mel)
-    print("writing output to file", output)
-    sf.write(str(output), wave, samplerate=sample_rate)
+    try:
+        mel = text2mel(text, lexicon_file, silence_duration)
+        wave = mel2wave(mel)
+        print("writing output to file", output)
+        sf.write(str(output), wave, samplerate=sample_rate)
+    except ValueError:
+        with open("log_file.txt", "a") as file: #log file error
+            file.write(path[0]+"\n")
+        with open("transcript.txt", "a") as tran:
+            tran.write(en_vi +"\n")
+ 
 
 # path = ['/Users/macos/Desktop/Final_Report/Data/test_slice_data/source/train/4.wav']
 # output = '/Users/macos/Documents/GitHub/vietTTS/assets/infore/clip1.wav'
@@ -87,7 +94,7 @@ lexicon_file = '/content/vietTTS/assets/infore/lexicon.txt'
 
 def multisyn(base_path, output):
     order = 0
-    list_path =  [f for f in glob.glob(base_path+"/*.wav")]
+    list_path =  sorted([f for f in glob.glob(base_path+"/*.wav")])
     for i in list_path:
         order +=1
         syntheaudio([i], output + '/' + str(order) + '.wav', sample_rate, silence_duration, lexicon_file)
