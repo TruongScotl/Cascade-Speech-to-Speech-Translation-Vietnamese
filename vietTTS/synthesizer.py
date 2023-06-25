@@ -6,6 +6,8 @@ import unicodedata
 # from argparse import ArgumentParser
 from pathlib import Path
 from vietnam_number import n2w
+from vinorm import TTSnorm
+
 
 import soundfile as sf
 
@@ -54,6 +56,7 @@ def nat_normalize_text(text):
     text = re.sub(r"[.,:;?!]+", f" {sil} ", text)
     text = re.sub("[ ]+", " ", text)
     text = re.sub(f"( {sil}+)+ ", f" {sil} ", text)
+    text = TTSnorm(text)
     temp = re.findall(r'\d+', text)
     for i in temp:
         text = text.replace(i,n2w(i))
